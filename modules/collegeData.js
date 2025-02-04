@@ -61,4 +61,36 @@ function getCourses() {
     })
 }
 
-module.exports = {initialize,getAllStudents,getTAs,getCourses}
+function getStudentsByCourse(course) {
+    return new Promise((resolve, reject) => {
+        const studentbyCourse = []
+        for(let i = 0; i < dataCollection.students.length; i++){
+            if(dataCollection.students[i]['course'] === course){
+                studentbyCourse.push(dataCollection.students[i]);
+            }
+        if(studentbyCourse.length > 0 ){
+            resolve(studentbyCourse); 
+        } else {
+            reject('no results returned');
+        }
+        };
+    });
+}; 
+
+function getStudentByNum(num){
+    return new Promise((resolve, reject) => {
+        const studentbyNum = []
+        for(let i = 0; i < dataCollection.students.length; i++){
+            if(dataCollection.students[i]['studentNum'] === num){
+                studentbyNum.push(dataCollection.students[i]);
+            }
+        if(studentbyCourse.length > 0 ){
+            resolve(studentbyNum); 
+        } else {
+            reject('no results returned');
+        }
+        };
+    });
+}
+module.exports = {initialize,getAllStudents,getTAs,getCourses, getStudentsByCourse, getStudentByNum}
+
