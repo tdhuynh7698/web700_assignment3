@@ -57,6 +57,18 @@ college.initialize()
         })
     });
 
+    app.get("/", (req, res) => {
+        res.sendFile(path.join(__dirname,"./views/home.html"))
+    });
+    
+    app.get("/about", (req, res) => {
+        res.sendFile(path.join(__dirname,"./views/about.html"))
+    });
+
+    app.get("/htmlDemo", (req, res) => {
+        res.sendFile(path.join(__dirname,"./views/htmlDemo.html"))
+    });
+
     
     // setup http server to listen on HTTP_PORT
     app.listen(HTTP_PORT, ()=>{console.log("server listening on port: " + HTTP_PORT)});
