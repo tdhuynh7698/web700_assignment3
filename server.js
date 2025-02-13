@@ -1,7 +1,8 @@
 var HTTP_PORT = process.env.PORT || 8080;
 var express = require("express");
 var app = express();
-var college = require("./modules/collegeData")
+var college = require("./modules/collegeData");
+var path = require("path");
 college.initialize()
 .then(() => {
     // setup a 'route' to listen on the default url path
@@ -25,10 +26,38 @@ college.initialize()
         }
     });
 
-    app.get("/tas", (req, res) =>{
+    app.get("/tas", (req, res) => {
         college.getTAs()
-    })
+        .then(manager =>{
+            res.json(manager);
+        })
+        .catch(err => {
+            res.status(500).json({message: "No results"});
+        })
+    });
 
+    app.get("/courses", (req, res) => {
+        college.getCourses()
+        .then(courses =>{
+            res.json(courses);
+        })
+        .catch(err => {
+            res.status(500).json({message: "No results"});
+        })
+    });
+
+    app.get("/student/:num", (req, res) =>{
+        const studentNum = req.params.num;
+        college.getStudentByNum(studentNum)
+        .then(student =>{
+            res.json(student)
+        })
+        .catch(err => {
+            res.status(500).json({message: "No results"});
+        })
+    });
+
+    
     // setup http server to listen on HTTP_PORT
     app.listen(HTTP_PORT, ()=>{console.log("server listening on port: " + HTTP_PORT)});
 }).catch(err =>{
