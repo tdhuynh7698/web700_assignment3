@@ -68,11 +68,11 @@ function getStudentsByCourse(course) {
             if(dataCollection.students[i]['course'] == course){
                 studentbyCourse.push(dataCollection.students[i]);
             }
+        };
         if(studentbyCourse.length > 0 ){
             resolve(studentbyCourse); 
         } else {
             reject('no results returned');
-        }
         };
     });
 }; 
@@ -84,13 +84,13 @@ function getStudentByNum(num){
             if(dataCollection.students[i]['studentNum'] == num){
                 studentbyNum.push(dataCollection.students[i]);
             }
+        }
         if(studentbyCourse.length > 0 ){
             resolve(studentbyNum); 
         } else {
             reject('no results returned');
-        }
         };
     });
-}
+};
 module.exports = {initialize,getAllStudents,getTAs,getCourses, getStudentsByCourse, getStudentByNum}
 
