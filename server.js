@@ -48,6 +48,7 @@ college.initialize()
 
     app.get("/student/:num", (req, res) =>{
         const studentNum = req.params.num;
+        console.log(studentNum)
         college.getStudentByNum(studentNum)
         .then(student =>{
             res.json(student)

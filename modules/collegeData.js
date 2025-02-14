@@ -85,7 +85,7 @@ function getStudentByNum(num){
                 studentbyNum.push(dataCollection.students[i]);
             }
         }
-        if(studentbyCourse.length > 0 ){
+        if(studentbyNum.length > 0 ){
             resolve(studentbyNum); 
         } else {
             reject('no results returned');
